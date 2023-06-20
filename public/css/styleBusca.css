@@ -1,0 +1,401 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap');
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    justify-content: center;
+}
+
+
+/* Página de login */
+.pesquisaItens {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logoLogin {
+    width: 18%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10%;
+}
+.logo2 {
+    position: relative;
+    width: 60px;
+    height: 70px;
+    left: 95%;
+    top: 5%;
+}
+
+  #triangulo1Login {
+    bottom: 23%;
+    left: -7vw;
+    border-width: 0vw 20vw 25vh 0vw;
+    transform: rotate(75deg);
+  }
+  
+  #triangulo2Login {
+    bottom: 47%;
+    left: -20%;
+    border-width: 0 17.5vw 50vh 22vw;
+    transform: rotate(72deg);
+  }
+  
+  #triangulo3Login {
+    bottom: 0;
+    right: 0;
+    border-width: 0 0vw 30vh 12.5vw;
+  }
+  
+  #triangulo4Login {
+    bottom: 0;
+    right: 4.4%;
+    border-width: 0 2vw 15vh 15vw;
+  }
+  
+  #triangulo5Login {
+    top: 0%;
+    left: 0%;
+    border-width: 0 0vw 37.5vh 35vw;
+    transform: rotate(180deg);
+  }
+
+.conteudoLogin {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    padding: 10px;
+    gap: 20px
+}
+
+.loginConteudoLogin {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.botaoLogin {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    margin-top: 10px;
+}
+.botaoLoginImg {
+    width: 300px;
+}
+
+/*Página de Busca*/
+.pesquisaItens {
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo {
+    position: absolute;
+    top: 30%;
+    left: 37%;
+    width: 25%;
+    
+    
+}
+
+.logo2{
+    position: relative;
+    width: 60px;
+    height: 70px;
+    left: 95%;
+    top: 29px;
+}
+
+
+.pesquisa {
+    /* Barra de pesquisa */
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     width: 50vw;
+     transform: translate(-50%, -50%);
+     padding: 15px;
+     justify-content: space-between;
+     display: flex;
+     align-items: center;
+     flex-wrap: wrap; /* Adicionado para quebrar a linha quando necessário */
+ 
+     background: #FFFFFF;
+     border: 1px solid #DCDCDC;
+     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+     border-radius: 100.5px;
+    
+}
+
+.pesquisa input {
+    flex: 1; /* Ocupa o espaço restante */
+    margin-right: 10px; /* Adicionado espaçamento entre o input e o botão */
+}
+
+.pesquisa i {
+    margin: auto;
+    color: #D9D9D9;
+    height: 20%;
+
+}
+
+#categoriaFiltros {
+    visibility: hidden;
+    /* Estilos dos filtros */
+}
+
+/* Estilos dos resultados */
+.resultados {
+    background-color: #fff;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.resultados h2 {
+    margin-top: 0;
+    color: #1a73e8;
+    font-size: 24px;
+}
+
+.resultados p {
+    color: #333;
+    font-size: 14px;
+}
+
+#inputPesquisa {
+    width: 100%;
+    color: rgb(64, 64, 64);
+    padding: 6px 12px;
+    text-align: left;
+    align-items: center;
+    padding: 1vh;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    background: #FFFFFF;
+}
+#inputPesquisa::placeholder {
+    /* Estilos do texto de placeholder */
+    text-align: left;
+    color: rgb(64, 64, 64);
+    opacity: 0.5;
+}
+
+#botaoPesquisa {
+   display: none;
+}
+
+
+.botoes {
+    justify-content: center;
+    text-decoration: none;
+    cursor: pointer;
+    margin: auto;
+}
+
+.main{
+    display:flex;
+    padding-top: 10rem;
+}
+
+/* Define a cor do botçao do menu lateral como azul, tamanho como 40x40, sua posição na tela e também oculta o background e a borda do botão, além de mudar o cursor para pointer */
+.iconeMenu {
+    width: 40px;
+    height: 40px;
+    margin-top: 0px;
+    margin-left: 40px;
+    background: transparent;
+    border: none;
+    color: #00A3FF;
+    cursor: pointer;
+}
+/* Define a altura do menu lateral como 100% da tela, largura como 0 quando fechada, prioridade de sobreposição por meio do z-index, background preto e fazendo com que esteja escondida por padrão */
+.menuLateral {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+/* Alterações nas letras contidas no menu lateral. */
+.menuLateral a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 15px;
+    color: #ffffff;
+    display: block;
+    transition: 0.3s;
+    padding: 8px 8px;
+}
+/* Define a cor para branco quando o cursor passar por cima do item e muda o cursor para pointer */
+.menuLateral a:hover {
+    color: #f1f1f1;
+    cursor: pointer;
+}
+/* Oculta o menu lateral e seus elementos quando o botão de fechar for pressionado. */
+.menuLateral .botaoFechar {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    margin-left: 50px;
+    cursor: pointer;
+}
+
+.procura{
+    color: #ffffff;
+    padding: 8px 8px;
+    font-size: 18px;
+    text-align: left;
+}
+#triangulo1 {
+    position: fixed;
+    bottom: 0;
+    left: -4vw;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 17.5vw 70vh 0;
+    border-color: transparent transparent rgba(0, 163, 255, 0.27) transparent;
+}
+
+#triangulo2 {
+    position: fixed;
+    bottom: -1.5vw;
+    left: 8.7vw;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 75vh 10.5vw 0;
+    border-color: transparent transparent rgba(0, 163, 255, 0.27) transparent;
+}
+
+#triangulo3 {
+    position: fixed;
+    bottom: -1.5vw;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 7.5vw 30vh 0;
+    border-color: transparent transparent rgba(0, 163, 255, 0.27) transparent;
+    transform: rotate(-12deg);
+}
+
+#triangulo4 {
+    position: fixed;
+    bottom: -1.5vw;
+    left: 28.7vw;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 30vw 12.5vh 0;
+    border-color: transparent transparent rgba(0, 163, 255, 0.27) transparent;
+    transform: rotate(-5deg);
+}
+
+#triangulo5 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 0 0 12vw 12vw;
+    border-color: transparent transparent rgba(0, 163, 255, 0.27) transparent;
+}
+
+.formatacao {
+    padding: 25px;
+    margin-left: 25%;
+}
+
+.alavanca {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .alavanca input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .bola {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .bola:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .bola {
+    background-color: #2196F3;
+  }
+  
+  input:focus + .bola {
+    box-shadow: 0 0 1px #2196F3;
+  }
+  
+  input:checked + .bola:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  .bola.botao {
+    border-radius: 34px;
+  }
+  
+  .bola.botao:before {
+    border-radius: 50%;
+  }
+  .darkMode {
+    background-color: #2a2c38;
+    color: white;
+}
+.darkMode .pesquisaDiv {
+    background-color: #717171;
+    color: #000;
+    border: #717171;
+}
+.darkMode .pesquisaDiv i {
+    color: #424558;
+}
+.darkMode #inputBusca::placeholder {
+    text-align: left;
+    color: #000;
+    opacity: 0.9;
+}

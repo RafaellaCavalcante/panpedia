@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panpedia</title>
+    <!-- Link com o script dos ícones do site Fontawesome -->
+    <script src="https://kit.fontawesome.com/9b32426a3d.js" crossorigin="anonymous"></script>
+    <!-- Definição do ícone da página -->
+    <link rel="short icon" href="/public/images/123.png" type="image/x-icon">
+    <!-- Inclusão do arquivo CSS externo -->
+    <link rel="stylesheet" type="text/css" href="/public/css/styleResultados.css">
+    <!-- Inclusão da biblioteca Jquery externo -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+    <!-- Inclusão do arquivo Javascript externo -->
+    <script src="../script.js"></script>
+</head>
+<body>
+    <%- include('../atalhos/sidebar')%>
+
+     <!-- Exibição do botão de abrir o side bar e definição da função onClick -->
+     <div class="barraMenu">
+        <button class="iconeMenu" onclick="abrirNav()"><i class="fa-sharp fa-solid fa-bars fa-2x"></i></button>
+</div>
+<!-- Exibição da header com barra de pesquisa e logo do Panpedia -->
+    <%- include('../atalhos/header')%>
+
+</div>
+</div>
+<!-- Exibição dos breadcrumbs, demonstrando o caminho do usuário. -->
+<div class="caminho">
+<a href="/busca/<%=permissao%>">Página Inicial</a>
+<p>></p>
+<a>Favoritos</a>
+</div>
+<!-- Exibição da lista de filtros -->
+<div class="conteudo">
+<div class="caixaFiltros">
+    <!-- adiciona os botões de filtros -->
+    <h2 class="filtrarpor"><i class="fas fa-filter"></i>Filtrar por:</h2>
+    <ul class="filtros">
+        <li><i class="fas fa-book"></i> Assunto</li>
+        <li><i class="fa-sharp fa-solid fa-eye-slash"></i> Dados sensíveis</li>
+    </ul>
+</div>
+<!-- adiciona os resultados da pesquisa a página de pesquisa  -->
+<div class="resultados">
+<% if (model.length > 0) { %>
+<% for (const saidas of model) { %>
+    <div class="resultadoItem">
+        <a href="/busca/<%= permissao %>/saida/0/metadados?ID_DADOS_TABELAS=<%= saidas.ID_DADOS_TABELAS%>&TABELA=<%= saidas.TABELA%>"><h2><%= saidas.TABELA %></h2></a>
+        <p><%= saidas.CONTEUDO_TABELA %></p>
+    </div>
+<% } %>
+<% } else { %>
+<h2>Você ainda não favoritou nenhuma tabela 💔 </h2>
+<% } %>
+<!-- divide todos os resultados da pesquisa em mais páginas -->
+<% if (model.length > 9) { %>
+<div class="paginacao">
+<% if (limit > 0) { %>
+<form method="get" action=<%= prev %>>
+    <button id="pagAnt"><i class="fa-sharp fa-solid fa-chevron-left"></i>Página anterior</button>
+</form>
+<% } %>
+<form method="get" action=<%= next %>>
+    <button id="proxPag"></i>Próxima página<i class="fa-sharp fa-solid fa-angle-right"></i></button>
+</form>
+</div>
+<% } %>
+</div>
+</div>
+<script>
+/*Cria a barra de pesquisa, botão de busca e os filtros */
+const searchInput = document.getElementById('inputPesquisa');
+const searchBtn = document.getElementById('botaoPesquisa');
+var darkMode = false
+/* adiciona o botão e a função dark mode, dependendo do modo claro e escuro muda as figuras */
+$(document).ready(function() {
+darkMode = localStorage.getItem("darkMode")==="true";
+$('#imagem3').hide()
+$('#imagem4').hide()
+var checkbox = document.getElementById("bolabtn");
+checkbox.checked = darkMode;
+
+var element = document.body;
+if (darkMode) {
+    $('#logo').hide()
+    $('#imagem3').show()
+    $('#imagem2').hide()
+    $('#imagem4').show()
+    element.classList.add("darkMode");
+} else {
+    $('#logo').show()
+    $('#imagem3').hide()
+    $('#imagem2').show()
+    $('#imagem4').hide()
+}
+});
+
+function funcaoDarkMode() {
+var element = document.body;
+if (darkMode === false) {
+    $('#logo').hide()
+    $('#imagem3').show()
+    $('#imagem2').hide()
+    $('#imagem4').show()
+    darkMode = true
+    console.log('darkMode', darkMode)
+    localStorage.setItem("darkMode", darkMode);
+    element.classList.add("darkMode");
+} else {
+    $('#logo').show()
+    $('#imagem3').hide()
+    $('#imagem2').show()
+    $('#imagem4').hide()
+    darkMode = false
+    localStorage.setItem("darkMode", darkMode);
+    element.classList.remove("darkMode");
+}
+}
+
+/* Abre a overlay do menu lateral */ 
+function abrirNav() {
+document.getElementById("menuLateral").style.width = "250px";
+console.log('foi')
+}
+
+/* Fecha o overlay do menu lateral */
+function fecharNav() {
+document.getElementById("menuLateral").style.width = "0";
+}
+</script>
+
+</body>
+</html>

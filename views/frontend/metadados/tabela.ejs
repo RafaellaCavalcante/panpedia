@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panpedia</title>
+    <!-- Link com o script dos ícones do site Fontawesome -->
+    <script src="https://kit.fontawesome.com/9b32426a3d.js" crossorigin="anonymous"></script>
+    <!-- Definição do ícone da página -->
+    <link rel="short icon" href="/public/images/123.png" type="image/x-icon">
+    <!-- Inclusão do arquivo CSS externo -->
+    <link rel="stylesheet" type="text/css" href="/public/css/styleMetadados.css">
+    <!-- Inclusão da biblioteca Jquery externo -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+    <!-- Inclusão do arquivo Javascript externo -->
+    <script src="../script.js"></script>
+</head>
+<body>
+    <%- include('../atalhos/sidebar')%>
+            <!-- Exibição do botão de abrir o side bar e definição da função onClick -->
+        <div class="barraMenu">
+                <button class="iconeMenu" onclick="abrirNav()"><i class="fa-sharp fa-solid fa-bars fa-2x"></i></button>
+        </div>
+        <!-- Exibição da header com barra de pesquisa e logo do Panpedia -->
+             <%- include('../atalhos/header')%>
+    <!-- Exibição dos breadcrumbs, demonstrando o caminho do usuário. -->
+    <div class="caminho">
+        <a href="/busca/<%=permissao%>">Página Inicial</a>
+        <p>></p>
+        <% for (const saidas of model) { %>
+            <a href="/busca/<%=permissao%>/saida/0">Busca</a>
+        <% } %>
+        <p>></p>
+        <a>Metadados</a>
+    </div>
+    <!-- Exibe o título da página abaixo dos breadcrumbs -->
+    <div class="metadados">
+        <% for (const metadados of model) { %>
+            <div class="metadadosItem">
+                <h2><%= metadados.TABELA %></h2>
+                <div id="lblFav">
+                    <i id="btnFav" class="fa-regular fa-bookmark fa-lg"></i>
+                    <input type="button" id="inpFav" value="FAVORITAR">
+                </div>
+            </div>
+            <div id="descricao">
+                <p><strong>Descrição: </strong><%= metadados.CONTEUDO_TABELA%></p>
+            </div>
+            <div class="tituloPagina">
+                <!-- Cada label abre uma aba diferente de metadados -->
+                <div class="mydict">
+                    <% for (const saidas of model) { %>
+                    <div>
+                        <label>
+                            <a href="/busca/<%= permissao %>/saida/0/campos?ID_DADOS_TABELAS=<%= saidas.ID_DADOS_TABELAS%>&TABELA=<%= saidas.TABELA%>">
+                            <input type="radio" name="radio">
+                            <span>Campos</span>
+                            </a>
+                        </label>
+                        <label>
+                            <input type="radio" name="radio" checked="">
+                            <span>Tabela</span>
+                        </label>
+                        <label>
+                            <a href="/busca/<%= permissao %>/saida/0/fonteDados?ID_DADOS_TABELAS=<%= saidas.ID_DADOS_TABELAS%>&TABELA=<%= saidas.TABELA%>">
+                            <input type="radio" name="radio">
+                            <span>Fonte de Dados</span>
+                            </a>
+                        </label>
+                    </div>
+                    <% } %>
+                </div>
+            </div>  
+            <div id="divTabela">
+                <!-- títulos da descrição das tabela -->
+                <table id="tabela">
+                    <tr id="colunas">
+                    <th>Conjunto de dados</th>
+                    <th>Owner</th>
+                    <th>Stweard</th>
+                    <th>Defasagem</th>
+                    <th>Caminho da tabela</th>
+                    <th>Database</th>
+                    <th>Criticidade</th>
+                    <th>Dados sensíveis</th>
+                    </tr>
+                    <% for (const variavel of variaveis) { %>
+                    <tr>
+                    <td><%= variavel.CONJUNTODADOS_PRODUTO %></td>
+                    <td><%= variavel.OWNER %></td>
+                    <td><%= variavel.STEWARD %></td>
+                    <td><%= variavel.DEFASAGEM %></td>
+                    <td><%= variavel.CAMINHO %></td>
+                    <td><%= variavel.DATABASE %></td>
+                    <td><%= variavel.CRITICIDADE_TABELA %></td>
+                    <td><%= variavel.DADOS_SENSIVEIS %></td>
+                    </tr>
+                    <% } %>
+                </table>
+        <% } %>
+            </div>
+    <!-- Cria os triângulos do background. -->
+    <div class="container" id="triangulo1">
+            <div id="triangulo2"></div>
+    </div>
+    <div id="triangulo3"></div>
+    <!-- Exibe o footer contendo a logo do banco pan -->
+    <footer>
+       <button class="btnLapis">
+            <i class="fa-solid fa-pencil"></i>Sugerir Alteração
+        </button>
+        <button class="btnMao">
+            <i class="fa-regular fa-hand-point-up"></i><a href="https://aws.amazon.com/pt/">Solicitar Acesso</a>
+        </button>
+        <div class="popup-wrapper">
+            <div class="popup">
+                <div class="popup-close">x</div>
+                <div class="popup-content">
+                    <form name="form1" method="post" action="/sugerir"> 
+                        <% for (const metadados of model) { %>
+                        <p>Tabela:</p>
+                        <h4><%= metadados.TABELA %></h4>
+                            <p>Nome completo:</p>
+                            <input type="text" name="NOME" value="" placeholder="Ex: Jorge Gonçalves Costa" required> 
+                            <p>Data:</p>
+                            <input type="text" name="DATA" value="" placeholder="Ex: 11/05/2023" pattern="\d{2}/\d{2}/\d{4}" required> 
+                            <p>Campo que deseja alterar:</p>
+                            <input type="text" name="CAMPO" value="" placeholder="Ex: Tipo do Campo" required> 
+                            <p>Metadado atualizado:</p>
+                            <input type="hidden" name="ID_TABELA" value="<%= metadados.ID_DADOS_TABELAS%>">
+                            <input type="text" name="ALTERACAO" value="" required> 
+                            <input id="popup-link" type="submit">
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        <!-- Exibe a logo do Pan -->
+        <img src="/public/images/logoBancoPanMin.svg" class="logoPanMenor" alt="Logo Banco Pan" id="imagem2">
+        <img src="/public/images/logoMinPanDarkMode.svg" class="logoPanMenor" id="imagem4">
+    </footer>
+        <!-- Atrela o script do JS ao HTML -->
+<script>
+
+/*PopUp*/
+const button = document.querySelector('.btnLapis')
+const popup = document.querySelector('.popup-wrapper')
+
+button.addEventListener('click', () => {
+    popup.style.display = 'block'
+})
+
+popup.addEventListener('click', event => {
+    const classNameOfClickedElement = event.target.classList[0]
+
+    if (classNameOfClickedElement === 'popup-close' || classNameOfClickedElement === 'popup-link' || classNameOfClickedElement === 'popup-wrapper') {
+        popup.style.display = 'none'
+    }
+    
+})
+
+    /*Cria a barra de pesquisa, botão de busca e os filtros */
+    const searchInput = document.getElementById('inputPesquisa');
+    const searchBtn = document.getElementById('botaoPesquisa');
+    var darkMode = false
+    /* adiciona o botão e a função dark mode, dependendo do modo claro e escuro muda as figuras */
+    $(document).ready(function() {
+        darkMode = localStorage.getItem("darkMode")==="true";
+        $('#imagem3').hide()
+        $('#imagem4').hide()
+        var checkbox = document.getElementById("bolabtn");
+        checkbox.checked = darkMode;
+
+        var element = document.body;
+        if (darkMode) {
+            $('#logo').hide()
+            $('#imagem3').show()
+            $('#imagem2').hide()
+            $('#imagem4').show()
+            element.classList.add("darkMode");
+        } else {
+            $('#logo').show()
+            $('#imagem3').hide()
+            $('#imagem2').show()
+            $('#imagem4').hide()
+        }
+    });
+
+    function funcaoDarkMode() {
+        var element = document.body;
+        if (darkMode === false) {
+            $('#logo').hide()
+            $('#imagem3').show()
+            $('#imagem2').hide()
+            $('#imagem4').show()
+            darkMode = true
+            console.log('darkMode', darkMode)
+            localStorage.setItem("darkMode", darkMode);
+            element.classList.add("darkMode");
+        } else {
+            $('#logo').show()
+            $('#imagem3').hide()
+            $('#imagem2').show()
+            $('#imagem4').hide()
+            darkMode = false
+            localStorage.setItem("darkMode", darkMode);
+            element.classList.remove("darkMode");
+        }
+    }
+
+/* Abre a overlay do menu lateral */ 
+function abrirNav() {
+    document.getElementById("menuLateral").style.width = "250px";
+    console.log('foi')
+}
+
+/* Fecha o overlay do menu lateral */
+function fecharNav() {
+    document.getElementById("menuLateral").style.width = "0";
+}
+
+$('form[name="form1"]').submit(function(e){
+    e.preventDefault(); // Evita que o formulário seja enviado da maneira padrão
+    $.post($(this).attr('action'), $(this).serialize(), function(data){
+      // Aqui você pode lidar com a resposta do servidor após o POST
+      alert('Alteração sugerida com sucesso!');
+    });
+  });
+
+</script>
+<script src="busca.js"></script>
+</body>
+</html>
+
+    

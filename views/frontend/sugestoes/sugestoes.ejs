@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Panpedia</title>
+    <!-- Link com o script dos ícones do site Fontawesome -->
+    <script src="https://kit.fontawesome.com/9b32426a3d.js" crossorigin="anonymous"></script>
+    <!-- Definição do ícone da página -->
+    <link rel="short icon" href="/public/images/123.png" type="image/x-icon">
+    <!-- Inclusão do arquivo CSS externo -->
+    <link rel="stylesheet" type="text/css" href="/public/css/styleResultados.css">
+    <!-- Inclusão da biblioteca Jquery externo -->
+    <script src="https://code.jquery.com/jquery-3.7.0.min.js" crossorigin="anonymous"></script>
+    <!-- Inclusão do arquivo Javascript externo -->
+    <script src="../script.js"></script>
+</head>
+<body>
+    <!-- Exibição do menu lateral e definição da função de onClick, usada para exibir ou esconder o menu -->
+    <%- include('../atalhos/sidebar')%>
+    <!-- Exibição da header com barra de pesquisa e logo do Panpedia -->
+        <%- include('../atalhos/header')%>
+    <!-- Exibição dos breadcrumbs, demonstrando o caminho do usuário. -->
+    <div class="sugestoesTabelas">
+        <div class="sugestoesGeral">
+            <div class="sugestao">
+                <h2 class="assuntoSug">Assunto da sugestão</h2>
+                <p class="descricaoSug">Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget turpis sed urna sollicitudin ultricies vel et lorem. Cras mauris urna, pellentesque a pellentesque ac, sodales non ante. Fusce vel consequat elit, ut tristique dui. Suspendisse pulvinar enim diam, a laoreet lacus tincidunt non. </p>
+            </div>
+            <div class="sugestao">
+                <h2 class="assuntoSug">Assunto da sugestão</h2>
+                <p class="descricaoSug">Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget turpis sed urna sollicitudin ultricies vel et lorem. Cras mauris urna, pellentesque a pellentesque ac, sodales non ante. Fusce vel consequat elit, ut tristique dui. Suspendisse pulvinar enim diam, a laoreet lacus tincidunt non. </p>
+            </div>
+            <div class="sugestao">
+                <h2 class="assuntoSug">Assunto da sugestão</h2>
+                <p class="descricaoSug">Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget turpis sed urna sollicitudin ultricies vel et lorem. Cras mauris urna, pellentesque a pellentesque ac, sodales non ante. Fusce vel consequat elit, ut tristique dui. Suspendisse pulvinar enim diam, a laoreet lacus tincidunt non. </p>
+            </div>
+            <div class="sugestao">
+                <h2 class="assuntoSug">Assunto da sugestão</h2>
+                <p class="descricaoSug">Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget turpis sed urna sollicitudin ultricies vel et lorem. Cras mauris urna, pellentesque a pellentesque ac, sodales non ante. Fusce vel consequat elit, ut tristique dui. Suspendisse pulvinar enim diam, a laoreet lacus tincidunt non. </p>
+            </div>
+            <div class="sugestao">
+                <h2 class="assuntoSug">Assunto da sugestão</h2>
+                <p class="descricaoSug">Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget turpis sed urna sollicitudin ultricies vel et lorem. Cras mauris urna, pellentesque a pellentesque ac, sodales non ante. Fusce vel consequat elit, ut tristique dui. Suspendisse pulvinar enim diam, a laoreet lacus tincidunt non. </p>
+            </div>
+            <div class="sugestao">
+                <h2 class="assuntoSug">Assunto da sugestão</h2>
+                <p class="descricaoSug">Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget turpis sed urna sollicitudin ultricies vel et lorem. Cras mauris urna, pellentesque a pellentesque ac, sodales non ante. Fusce vel consequat elit, ut tristique dui. Suspendisse pulvinar enim diam, a laoreet lacus tincidunt non. </p>
+            </div>
+            <div class="sugestao">
+                <h2 class="assuntoSug">Assunto da sugestão</h2>
+                <p class="descricaoSug">Descrição: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus eget turpis sed urna sollicitudin ultricies vel et lorem. Cras mauris urna, pellentesque a pellentesque ac, sodales non ante. Fusce vel consequat elit, ut tristique dui. Suspendisse pulvinar enim diam, a laoreet lacus tincidunt non. </p>
+            </div>
+        </div>
+    </div>
+    <div>
+        <img src="/public/images/logoBancoPanMin.svg" class="logoPanMenor" id="imagem2" alt="Logo miniatura do Banco Pan">
+        <img src="/public/images/logoMinPanDarkMode.svg" class="logoPanMenor" id="imagem4" alt="Logo miniatura do Banco Pan (darkmode)">
+    </div>
+<script>
+
+    /*Cria a barra de pesquisa, botão de busca e os filtros */
+    const searchInput = document.getElementById('inputPesquisa');
+    const searchBtn = document.getElementById('botaoPesquisa');
+    var darkMode = false
+    /* adiciona o botão e a função dark mode, dependendo do modo claro e escuro muda as figuras */
+    $(document).ready(function() {
+        darkMode = localStorage.getItem("darkMode")==="true";
+        $('#imagem3').hide()
+        $('#imagem4').hide()
+        var checkbox = document.getElementById("bolabtn");
+        checkbox.checked = darkMode;
+
+        var element = document.body;
+        if (darkMode) {
+            $('#logo').hide()
+            $('#imagem3').show()
+            $('#imagem2').hide()
+            $('#imagem4').show()
+            element.classList.add("darkMode");
+        } else {
+            $('#logo').show()
+            $('#imagem3').hide()
+            $('#imagem2').show()
+            $('#imagem4').hide()
+        }
+    });
+
+    function funcaoDarkMode() {
+        var element = document.body;
+        if (darkMode === false) {
+            $('#logo').hide()
+            $('#imagem3').show()
+            $('#imagem2').hide()
+            $('#imagem4').show()
+            darkMode = true
+            console.log('darkMode', darkMode)
+            localStorage.setItem("darkMode", darkMode);
+            element.classList.add("darkMode");
+        } else {
+            $('#logo').show()
+            $('#imagem3').hide()
+            $('#imagem2').show()
+            $('#imagem4').hide()
+            darkMode = false
+            localStorage.setItem("darkMode", darkMode);
+            element.classList.remove("darkMode");
+        }
+    }
+
+    /* Abre a overlay do menu lateral */ 
+    function abrirNav() {
+        document.getElementById("menuLateral").style.width = "250px";
+        console.log('foi')
+    }
+    
+    /* Fecha o overlay do menu lateral */
+    function fecharNav() {
+        document.getElementById("menuLateral").style.width = "0";
+    }
+</script>
+<script src="busca.js"></script>
+</body>
+</html>
+
